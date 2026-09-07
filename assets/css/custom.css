@@ -1,69 +1,77 @@
 /* ==========================================================================
    CUSTOM STYLING — PORTOFOLIO WEB DEVELOPER / IT
-   Theme: Professional Slate Navy & Teal Accent
-   Deskripsi: Override warna & elemen visual dari template Stellar (HTML5 UP).
+   Theme: Modern Midnight Slate & Electric Cyan / Royal Blue Accent
+   Deskripsi: Override lengkap untuk template Stellar (HTML5 UP) agar tampil
+   elegan, modern (Dark Mode), dan kontras tinggi di layar gelap.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. VARIABEL UTAMA (:root)
    -------------------------------------------------------------------------- */
 :root {
-	/* Palet Body / Page Canvas Background (Pengganti Ungu Stellar) */
-	--color-body-bg-start: #0b1320;
-	--color-body-bg-mid: #16273f;
-	--color-body-bg-end: #0f1b2d;
+	/* Background Utama Halaman (Menggantikan Ungu & Navy Lama) */
+	--color-body-bg-start: #090d16;
+	--color-body-bg-mid: #0f172a;
+	--color-body-bg-end: #090d16;
 
-	/* Palet Navy (Header, Footer, Headings, Primary Button) */
-	--color-navy-dark: #0f1b2d;
-	--color-navy: #16273f;
-	--color-navy-light: #23395b;
+	/* Elevated Card Backgrounds (Seksi Konten #main) */
+	--color-card-bg: #1e293b;        /* Slate 800 - Latar seksi utama */
+	--color-card-alt-bg: #0f172a;    /* Slate 900 - Latar seksi selang-seling */
 
-	/* Palet Teal / Accent (Buttons, Icons, Borders, Links) */
-	--color-accent: #2c7a7b;
-	--color-accent-hover: #1d5253;
-	--color-accent-light: #38b2ac;
+	/* Tipografi / Warna Teks Kontras Tinggi */
+	--color-heading: #ffffff;         /* Putih bersih untuk judul */
+	--color-text-body: #cbd5e1;       /* Silver terang untuk paragraf/teks */
+	--color-text-muted: #94a3b8;      /* Gray silver redup */
 
-	/* Palet Netral (Backgrounds & Text) */
-	--color-bg-white: #ffffff;
-	--color-bg-light: #f7f8fa;
-	--color-text-dark: #2d3436;
-	--color-text-muted: #636e72;
-	--color-text-light: #e2e8f0;
-	--color-border: #e2e8f0;
+	/* Palet Tombol (High Contrast, Bold, & 100% Terbaca) */
+	--color-primary-btn: #2563eb;     /* Electric Royal Blue */
+	--color-primary-btn-hover: #1d4ed8;
+
+	--color-secondary-btn: #0d9488;   /* Vibrant Cyan / Teal */
+	--color-secondary-btn-hover: #0f766e;
+
+	/* Warna Aksen Icon, Link, & Highlight */
+	--color-accent-cyan: #38bdf8;     /* Bright Cyan */
 }
 
 /* --------------------------------------------------------------------------
-   2. OVERRIDE LATAR BELAKANG HALAMAN (BODY)
-   Menggantikan gradasi warna ungu menyala bawaan Stellar dengan gradasi
-   Navy-Slate yang tenang, elegan, dan profesional.
+   2. LATAR BELAKANG DOKUMEN (BODY)
+   Latar belakang gelap modern (Midnight Slate) pengganti warna ungu.
    -------------------------------------------------------------------------- */
-body {
+html, body {
 	background-color: var(--color-body-bg-start) !important;
 	background-image: linear-gradient(135deg, var(--color-body-bg-start) 0%, var(--color-body-bg-mid) 50%, var(--color-body-bg-end) 100%) !important;
 	background-attachment: fixed !important;
-	color: var(--color-text-dark);
+	color: var(--color-text-body) !important;
 }
 
 /* --------------------------------------------------------------------------
-   3. STYLING TIPOGRAFI & LINK BIAA
+   3. STYLING KONTEN & TIPOGRAFI
    -------------------------------------------------------------------------- */
-p, li, dt, dd {
-	color: var(--color-text-dark);
+body, p, li, dt, dd, span {
+	color: var(--color-text-body);
 }
 
-/* Heading utama */
+/* Semakian jelas judul di latar gelap */
 h1, h2, h3, h4, h5, h6, .major h2 {
-	color: var(--color-navy) !important;
+	color: var(--color-heading) !important;
 }
 
-/* Link biasa di dalam teks (Dipisah dari .button agar teks tombol tidak tertimpa) */
+/* Garis hiasan di bawah judul seksi */
+header.major h2:after {
+	background-color: var(--color-accent-cyan) !important;
+}
+
+/* Link biasa di paragraf (Dipisah dari .button agar teks tombol tidak terpengaruh) */
 a:not(.button):not(.logo) {
-	color: var(--color-accent) !important;
-	transition: color 0.2s ease, border-color 0.2s ease;
+	color: var(--color-accent-cyan) !important;
+	text-decoration: none;
+	transition: color 0.2s ease;
 }
 
 a:not(.button):not(.logo):hover {
-	color: var(--color-accent-hover) !important;
+	color: #ffffff !important;
+	text-decoration: underline;
 }
 
 /* --------------------------------------------------------------------------
@@ -72,7 +80,7 @@ a:not(.button):not(.logo):hover {
 #header {
 	background-color: transparent !important;
 	background-image: none !important;
-	color: var(--color-text-light) !important;
+	color: var(--color-text-body) !important;
 }
 
 #header h1 {
@@ -80,55 +88,65 @@ a:not(.button):not(.logo):hover {
 }
 
 #header p {
-	color: var(--color-text-light) !important;
+	color: var(--color-text-body) !important;
 }
 
 #header p a {
-	color: #ffffff !important;
-	border-bottom: 1px solid var(--color-accent-light) !important;
+	color: var(--color-accent-cyan) !important;
+	border-bottom: 1px dashed var(--color-accent-cyan) !important;
 }
 
 #header p a:hover {
-	color: var(--color-accent-light) !important;
+	color: #ffffff !important;
+	border-bottom-style: solid !important;
 }
 
 /* --------------------------------------------------------------------------
    5. NAVIGASI STICKY (#nav)
+   Navigasi gelap modern dengan border bawah aksen cyan.
    -------------------------------------------------------------------------- */
-#nav {
-	background-color: var(--color-bg-white) !important;
-	box-shadow: 0 4px 15px rgba(11, 19, 32, 0.12) !important;
+#nav, #nav.alt {
+	background-color: #0f172a !important;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
 }
 
 #nav a {
-	color: var(--color-text-dark) !important;
-	font-weight: 600;
+	color: var(--color-text-body) !important;
+	font-weight: 600 !important;
 	border-bottom: 2px solid transparent !important;
-	transition: color 0.2s ease, border-color 0.2s ease !important;
+	transition: all 0.2s ease !important;
 }
 
 #nav a.active,
 #nav a:hover {
-	color: var(--color-accent) !important;
-	background-color: transparent !important;
-	border-bottom: 2px solid var(--color-accent) !important;
+	color: var(--color-accent-cyan) !important;
+	background-color: rgba(56, 189, 248, 0.1) !important;
+	border-bottom: 2px solid var(--color-accent-cyan) !important;
 }
 
 /* --------------------------------------------------------------------------
    6. SEKSI KONTEN UTAMA (#main)
-   Pembeda background selang-seling antara putih (#ffffff) dan abu netral (#f7f8fa).
+   KONTEN di dalam kartu berlatar gelap elegan (Elevated Slate Cards).
    -------------------------------------------------------------------------- */
+#main {
+	background-color: transparent !important;
+}
+
 #main > .main {
-	background-color: var(--color-bg-white) !important;
-	border-radius: 8px;
+	background-color: var(--color-card-bg) !important;
+	border: 1px solid rgba(255, 255, 255, 0.08) !important;
+	border-radius: 12px !important;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+	color: var(--color-text-body) !important;
 }
 
 #main > .main.special {
-	background-color: var(--color-bg-light) !important;
+	background-color: var(--color-card-alt-bg) !important;
 }
 
 /* --------------------------------------------------------------------------
-   7. IKON SKILLS (DISAMAKAN JADI TEAL ACCENT)
+   7. IKON SKILLS (KONSISTEN ELECTRIC CYAN)
    -------------------------------------------------------------------------- */
 .features .icon.style1,
 .features .icon.style2,
@@ -140,27 +158,27 @@ a:not(.button):not(.logo):hover {
 .icon.style3,
 .icon.style4,
 .icon.style5 {
-	color: var(--color-accent) !important;
-	border-color: var(--color-accent) !important;
+	color: var(--color-accent-cyan) !important;
+	border-color: var(--color-accent-cyan) !important;
 }
 
 .icon.major {
-	border-color: rgba(44, 122, 123, 0.25) !important;
-	color: var(--color-accent) !important;
+	border-color: rgba(56, 189, 248, 0.3) !important;
+	color: var(--color-accent-cyan) !important;
 }
 
 .icon.major:before {
-	border-color: var(--color-accent) !important;
-	color: var(--color-accent) !important;
+	border-color: var(--color-accent-cyan) !important;
+	color: var(--color-accent-cyan) !important;
 }
 
 /* --------------------------------------------------------------------------
    8. SEKSI JOURNEY / STATISTIK
    -------------------------------------------------------------------------- */
 ul.statistics li {
-	background-color: var(--color-navy) !important;
+	background-color: #0b1320 !important;
 	color: #ffffff !important;
-	border-right: 1px solid rgba(255, 255, 255, 0.08);
+	border: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 ul.statistics li.style1,
@@ -168,84 +186,126 @@ ul.statistics li.style2,
 ul.statistics li.style3,
 ul.statistics li.style4,
 ul.statistics li.style5 {
-	background-color: var(--color-navy) !important;
+	background-color: #0b1320 !important;
 }
 
 ul.statistics li strong,
 ul.statistics li b {
 	color: #ffffff !important;
+	font-weight: 700 !important;
 }
 
 ul.statistics li .icon {
-	color: var(--color-accent-light) !important;
+	color: var(--color-accent-cyan) !important;
 }
 
 /* --------------------------------------------------------------------------
-   9. PERBAIKAN WARNA TOMBOL / BUTTONS (100% TERBACA JELAS)
-   Solusi: Memberikan spesifisitas tinggi agar teks tombol SELALU putih bersih,
-   baik untuk tag <a>, <button>, maupun <input>.
+   9. OVERRIDE TOTAL TOMBOL / BUTTONS (DENGAN HIGH SPESIFISITAS)
+   Menimpa aturan bawaan Stellar (#main .button { color: #636363 !important; })
+   sehingga TEKS TOMBOL 100% PUTIH BERSIH DAN MENCOLOK DI ATAS TOMBOL.
    -------------------------------------------------------------------------- */
 
-/* Tombol Standar / Secondary (.button) — Background Teal, Teks Putih */
+/* --- Tombol Biasa / Secondary (.button) --- */
+#main .button,
+#main a.button,
+#main button,
+#main input[type="submit"],
+#main input[type="button"],
+#wrapper .button,
+#wrapper a.button,
+#footer .button,
+#footer a.button,
+.actions li a.button,
 a.button,
-button.button,
-input.button,
-.button,
-.actions li a.button {
-	background-color: var(--color-accent) !important;
+.button {
+	background-color: var(--color-secondary-btn) !important;
 	color: #ffffff !important;
-	border: 1px solid var(--color-accent) !important;
-	box-shadow: 0 2px 6px rgba(44, 122, 123, 0.25) !important;
-	font-weight: 600 !important;
+	border: none !important;
+	box-shadow: 0 4px 14px rgba(13, 148, 136, 0.35) !important;
+	font-weight: 700 !important;
+	font-size: 0.95em !important;
+	letter-spacing: 0.03em !important;
 	text-decoration: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	transition: all 0.2s ease-in-out !important;
 }
 
+#main .button:hover,
+#main a.button:hover,
+#main button:hover,
+#main input[type="submit"]:hover,
+#main input[type="button"]:hover,
+#wrapper .button:hover,
+#wrapper a.button:hover,
+#footer .button:hover,
+#footer a.button:hover,
+.actions li a.button:hover,
 a.button:hover,
-button.button:hover,
-input.button:hover,
-.button:hover,
-.actions li a.button:hover {
-	background-color: var(--color-accent-hover) !important;
+.button:hover {
+	background-color: var(--color-secondary-btn-hover) !important;
 	color: #ffffff !important;
-	border-color: var(--color-accent-hover) !important;
+	box-shadow: 0 6px 20px rgba(13, 148, 136, 0.5) !important;
+	transform: translateY(-2px) !important;
 }
 
-/* Tombol Utama / Primary (.button.primary) — Background Navy Gelap, Teks Putih */
+/* --- Tombol Utama / Primary (.button.primary) --- */
+#main .button.primary,
+#main a.button.primary,
+#main button.primary,
+#main input[type="submit"].primary,
+#main input[type="button"].primary,
+#wrapper .button.primary,
+#wrapper a.button.primary,
+#footer .button.primary,
+#footer a.button.primary,
+.actions li a.button.primary,
 a.button.primary,
-button.button.primary,
-input.button.primary,
-.button.primary,
-.actions li a.button.primary {
-	background-color: var(--color-navy) !important;
+.button.primary {
+	background-color: var(--color-primary-btn) !important;
 	color: #ffffff !important;
-	border: 1px solid var(--color-navy) !important;
-	box-shadow: 0 2px 6px rgba(15, 27, 45, 0.25) !important;
-	font-weight: 600 !important;
+	border: none !important;
+	box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4) !important;
+	font-weight: 700 !important;
+	font-size: 0.95em !important;
+	letter-spacing: 0.03em !important;
+	text-decoration: none !important;
+	opacity: 1 !important;
+	visibility: visible !important;
+	transition: all 0.2s ease-in-out !important;
 }
 
+#main .button.primary:hover,
+#main a.button.primary:hover,
+#main button.primary:hover,
+#main input[type="submit"].primary:hover,
+#main input[type="button"].primary:hover,
+#wrapper .button.primary:hover,
+#wrapper a.button.primary:hover,
+#footer .button.primary:hover,
+#footer a.button.primary:hover,
+.actions li a.button.primary:hover,
 a.button.primary:hover,
-button.button.primary:hover,
-input.button.primary:hover,
-.button.primary:hover,
-.actions li a.button.primary:hover {
-	background-color: var(--color-navy-dark) !important;
+.button.primary:hover {
+	background-color: var(--color-primary-btn-hover) !important;
 	color: #ffffff !important;
-	border-color: var(--color-navy-dark) !important;
+	box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6) !important;
+	transform: translateY(-2px) !important;
 }
 
 /* --------------------------------------------------------------------------
    10. SEKSI CALL TO ACTION (CTA)
    -------------------------------------------------------------------------- */
 #cta {
-	background-color: var(--color-bg-light) !important;
+	background-color: var(--color-card-alt-bg) !important;
 }
 
 /* --------------------------------------------------------------------------
-   11. FOOTER & KONTAK
+   11. FOOTER & INFO KONTAK
    -------------------------------------------------------------------------- */
 #footer {
 	background-color: transparent !important;
-	color: var(--color-text-light) !important;
+	color: var(--color-text-body) !important;
 }
 
 #footer h2 {
@@ -256,11 +316,11 @@ input.button.primary:hover,
 #footer p,
 #footer dl.alt dt,
 #footer dl.alt dd {
-	color: var(--color-text-light) !important;
+	color: var(--color-text-body) !important;
 }
 
 #footer a:not(.button) {
-	color: var(--color-accent-light) !important;
+	color: var(--color-accent-cyan) !important;
 }
 
 #footer a:not(.button):hover {
@@ -273,11 +333,12 @@ input.button.primary:hover,
 }
 
 #footer .icons a:hover {
-	color: var(--color-accent-light) !important;
-	border-color: var(--color-accent-light) !important;
+	color: var(--color-accent-cyan) !important;
+	border-color: var(--color-accent-cyan) !important;
+	background-color: rgba(56, 189, 248, 0.1) !important;
 }
 
 #footer .copyright,
 #footer .copyright a {
-	color: #94a3b8 !important;
+	color: var(--color-text-muted) !important;
 }
