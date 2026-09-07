@@ -1,21 +1,24 @@
 /* ==========================================================================
    CUSTOM STYLING — PORTOFOLIO WEB DEVELOPER / IT
-   Theme: Elegant & Professional Navy-Teal
+   Theme: Professional Slate Navy & Teal Accent
    Deskripsi: Override warna & elemen visual dari template Stellar (HTML5 UP).
-   Pastikan file ini dimuat SETELAH main.css di HTML (misal: index.html).
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
    1. VARIABEL UTAMA (:root)
-   Memudahkan pengubahan warna dan tema di masa mendatang.
    -------------------------------------------------------------------------- */
 :root {
-	/* Palet Navy (Header, Footer, Headings) */
+	/* Palet Body / Page Canvas Background (Pengganti Ungu Stellar) */
+	--color-body-bg-start: #0b1320;
+	--color-body-bg-mid: #16273f;
+	--color-body-bg-end: #0f1b2d;
+
+	/* Palet Navy (Header, Footer, Headings, Primary Button) */
 	--color-navy-dark: #0f1b2d;
 	--color-navy: #16273f;
 	--color-navy-light: #23395b;
 
-	/* Palet Teal / Aksen (Buttons, Links, Icons, Borders) */
+	/* Palet Teal / Accent (Buttons, Icons, Borders, Links) */
 	--color-accent: #2c7a7b;
 	--color-accent-hover: #1d5253;
 	--color-accent-light: #38b2ac;
@@ -30,35 +33,45 @@
 }
 
 /* --------------------------------------------------------------------------
-   2. STYLING GLOBAL & TIPOGRAFI
-   Menjaga hirarki baca dan kontras teks utama.
+   2. OVERRIDE LATAR BELAKANG HALAMAN (BODY)
+   Menggantikan gradasi warna ungu menyala bawaan Stellar dengan gradasi
+   Navy-Slate yang tenang, elegan, dan profesional.
    -------------------------------------------------------------------------- */
-body, p, li, dt, dd {
+body {
+	background-color: var(--color-body-bg-start) !important;
+	background-image: linear-gradient(135deg, var(--color-body-bg-start) 0%, var(--color-body-bg-mid) 50%, var(--color-body-bg-end) 100%) !important;
+	background-attachment: fixed !important;
 	color: var(--color-text-dark);
 }
 
-/* Heading memakai Navy untuk kesan profesional & tegas */
+/* --------------------------------------------------------------------------
+   3. STYLING TIPOGRAFI & LINK BIAA
+   -------------------------------------------------------------------------- */
+p, li, dt, dd {
+	color: var(--color-text-dark);
+}
+
+/* Heading utama */
 h1, h2, h3, h4, h5, h6, .major h2 {
 	color: var(--color-navy) !important;
 }
 
-/* Link di area konten utama */
-a {
+/* Link biasa di dalam teks (Dipisah dari .button agar teks tombol tidak tertimpa) */
+a:not(.button):not(.logo) {
 	color: var(--color-accent) !important;
 	transition: color 0.2s ease, border-color 0.2s ease;
 }
 
-a:hover {
+a:not(.button):not(.logo):hover {
 	color: var(--color-accent-hover) !important;
 }
 
 /* --------------------------------------------------------------------------
-   3. HEADER / HERO SECTION
-   Menggunakan latar Navy gelap dengan teks terang berkontras tinggi.
+   4. HEADER / HERO SECTION (#header)
    -------------------------------------------------------------------------- */
 #header {
-	background-color: var(--color-navy-dark) !important;
-	background-image: linear-gradient(135deg, var(--color-navy-dark) 0%, var(--color-navy) 100%) !important;
+	background-color: transparent !important;
+	background-image: none !important;
 	color: var(--color-text-light) !important;
 }
 
@@ -72,7 +85,7 @@ a:hover {
 
 #header p a {
 	color: #ffffff !important;
-	border-bottom-color: var(--color-accent-light) !important;
+	border-bottom: 1px solid var(--color-accent-light) !important;
 }
 
 #header p a:hover {
@@ -80,22 +93,20 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   4. NAVIGASI STICKY (#nav)
-   Warna nav netral dengan aksen border bawah untuk item aktif/hover.
+   5. NAVIGASI STICKY (#nav)
    -------------------------------------------------------------------------- */
 #nav {
 	background-color: var(--color-bg-white) !important;
-	box-shadow: 0 2px 8px rgba(15, 27, 45, 0.08) !important;
+	box-shadow: 0 4px 15px rgba(11, 19, 32, 0.12) !important;
 }
 
 #nav a {
 	color: var(--color-text-dark) !important;
-	font-weight: 500;
+	font-weight: 600;
 	border-bottom: 2px solid transparent !important;
 	transition: color 0.2s ease, border-color 0.2s ease !important;
 }
 
-/* State aktif dan hover diberi border bawah warna aksen Teal */
 #nav a.active,
 #nav a:hover {
 	color: var(--color-accent) !important;
@@ -104,11 +115,12 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   5. BACKGROUND SECTION SELANG-SELING (#main)
-   Pembeda selang-seling antara putih bersih (#ffffff) dan abu netral (#f7f8fa).
+   6. SEKSI KONTEN UTAMA (#main)
+   Pembeda background selang-seling antara putih (#ffffff) dan abu netral (#f7f8fa).
    -------------------------------------------------------------------------- */
 #main > .main {
 	background-color: var(--color-bg-white) !important;
+	border-radius: 8px;
 }
 
 #main > .main.special {
@@ -116,8 +128,7 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   6. IKON SKILLS & GENERAL ICONS
-   Semua ikon disamakan menjadi satu warna aksen Teal (menggantikan style1-5).
+   7. IKON SKILLS (DISAMAKAN JADI TEAL ACCENT)
    -------------------------------------------------------------------------- */
 .features .icon.style1,
 .features .icon.style2,
@@ -133,7 +144,6 @@ a:hover {
 	border-color: var(--color-accent) !important;
 }
 
-/* Ikon dengan lingkaran pembungkus (major) */
 .icon.major {
 	border-color: rgba(44, 122, 123, 0.25) !important;
 	color: var(--color-accent) !important;
@@ -145,8 +155,7 @@ a:hover {
 }
 
 /* --------------------------------------------------------------------------
-   7. SEKSI JOURNEY / STATISTIK
-   KARTU statistik yang rapi, profesional, dan tenang (bebas warna-warni).
+   8. SEKSI JOURNEY / STATISTIK
    -------------------------------------------------------------------------- */
 ul.statistics li {
 	background-color: var(--color-navy) !important;
@@ -172,51 +181,70 @@ ul.statistics li .icon {
 }
 
 /* --------------------------------------------------------------------------
-   8. TOMBOL / BUTTONS
-   - Button utama (.button.primary): Navy Gelap
-   - Button biasa (.button): Teal
+   9. PERBAIKAN WARNA TOMBOL / BUTTONS (100% TERBACA JELAS)
+   Solusi: Memberikan spesifisitas tinggi agar teks tombol SELALU putih bersih,
+   baik untuk tag <a>, <button>, maupun <input>.
    -------------------------------------------------------------------------- */
-/* Button biasa (Teal Accent) */
-.button {
+
+/* Tombol Standar / Secondary (.button) — Background Teal, Teks Putih */
+a.button,
+button.button,
+input.button,
+.button,
+.actions li a.button {
 	background-color: var(--color-accent) !important;
 	color: #ffffff !important;
-	border-color: var(--color-accent) !important;
-	box-shadow: none !important;
-	transition: background-color 0.2s ease, border-color 0.2s ease !important;
+	border: 1px solid var(--color-accent) !important;
+	box-shadow: 0 2px 6px rgba(44, 122, 123, 0.25) !important;
+	font-weight: 600 !important;
+	text-decoration: none !important;
 }
 
-.button:hover {
+a.button:hover,
+button.button:hover,
+input.button:hover,
+.button:hover,
+.actions li a.button:hover {
 	background-color: var(--color-accent-hover) !important;
-	border-color: var(--color-accent-hover) !important;
 	color: #ffffff !important;
+	border-color: var(--color-accent-hover) !important;
 }
 
-/* Button utama / Primary (Navy Gelap) */
-.button.primary {
+/* Tombol Utama / Primary (.button.primary) — Background Navy Gelap, Teks Putih */
+a.button.primary,
+button.button.primary,
+input.button.primary,
+.button.primary,
+.actions li a.button.primary {
 	background-color: var(--color-navy) !important;
 	color: #ffffff !important;
-	border-color: var(--color-navy) !important;
+	border: 1px solid var(--color-navy) !important;
+	box-shadow: 0 2px 6px rgba(15, 27, 45, 0.25) !important;
+	font-weight: 600 !important;
 }
 
-.button.primary:hover {
+a.button.primary:hover,
+button.button.primary:hover,
+input.button.primary:hover,
+.button.primary:hover,
+.actions li a.button.primary:hover {
 	background-color: var(--color-navy-dark) !important;
-	border-color: var(--color-navy-dark) !important;
 	color: #ffffff !important;
+	border-color: var(--color-navy-dark) !important;
 }
 
 /* --------------------------------------------------------------------------
-   9. CALL TO ACTION (CTA SECTION)
+   10. SEKSI CALL TO ACTION (CTA)
    -------------------------------------------------------------------------- */
 #cta {
 	background-color: var(--color-bg-light) !important;
 }
 
 /* --------------------------------------------------------------------------
-   10. FOOTER & KONTAK
-   Latar Navy gelap dengan teks perak/putih yang nyaman dibaca.
+   11. FOOTER & KONTAK
    -------------------------------------------------------------------------- */
 #footer {
-	background-color: var(--color-navy-dark) !important;
+	background-color: transparent !important;
 	color: var(--color-text-light) !important;
 }
 
@@ -231,11 +259,11 @@ ul.statistics li .icon {
 	color: var(--color-text-light) !important;
 }
 
-#footer a {
+#footer a:not(.button) {
 	color: var(--color-accent-light) !important;
 }
 
-#footer a:hover {
+#footer a:not(.button):hover {
 	color: #ffffff !important;
 }
 
