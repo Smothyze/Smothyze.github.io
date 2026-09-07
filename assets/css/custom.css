@@ -1,0 +1,132 @@
+/* =====================================================
+   Custom Color Override — Portofolio Ahmad
+   Palet: Navy gelap + Abu-abu netral + Aksen Teal
+   Load file ini SETELAH main.css agar override berhasil
+   ===================================================== */
+
+:root {
+	--color-navy-dark: #0f1b2d;
+	--color-navy: #16273f;
+	--color-accent: #2c7a7b;
+	--color-accent-dark: #235f60;
+	--color-text-dark: #2d3436;
+	--color-bg-light: #f7f8fa;
+	--color-bg-white: #ffffff;
+}
+
+/* Header / Hero */
+#header {
+	background-color: var(--color-navy-dark) !important;
+	background-image: linear-gradient(135deg, var(--color-navy-dark), var(--color-navy)) !important;
+}
+#header h1, #header p, #header p a {
+	color: #ffffff !important;
+}
+#header p a {
+	border-bottom-color: var(--color-accent) !important;
+}
+
+/* Nav */
+#nav {
+	background-color: var(--color-bg-white) !important;
+}
+#nav a {
+	color: var(--color-text-dark) !important;
+}
+#nav a.active,
+#nav a:hover {
+	color: var(--color-accent) !important;
+	border-bottom: 2px solid var(--color-accent) !important;
+}
+
+/* Section backgrounds alternate */
+#main > .main {
+	background-color: var(--color-bg-white) !important;
+}
+#main > .main.special {
+	background-color: var(--color-bg-light) !important;
+}
+
+/* Headings */
+h2, h3 {
+	color: var(--color-navy) !important;
+}
+
+/* Body text links */
+a {
+	color: var(--color-accent) !important;
+}
+a:hover {
+	color: var(--color-accent-dark) !important;
+}
+
+/* Feature icons (Skills section) — samakan semua ke satu aksen, bukan warna-warni */
+.features .icon.style1,
+.features .icon.style2,
+.features .icon.style3,
+.features .icon.style4,
+.features .icon.style5 {
+	color: var(--color-accent) !important;
+}
+
+/* Statistics (Journey section) — angka & ikon */
+ul.statistics li strong {
+	color: var(--color-navy) !important;
+}
+ul.statistics li.style1 .icon,
+ul.statistics li.style2 .icon,
+ul.statistics li.style3 .icon,
+ul.statistics li.style4 .icon,
+ul.statistics li.style5 .icon {
+	color: var(--color-accent) !important;
+}
+
+/* Buttons */
+.button {
+	background-color: var(--color-accent) !important;
+	color: #ffffff !important;
+	border-color: var(--color-accent) !important;
+}
+.button:hover {
+	background-color: var(--color-accent-dark) !important;
+}
+.button.primary {
+	background-color: var(--color-navy) !important;
+	border-color: var(--color-navy) !important;
+}
+.button.primary:hover {
+	background-color: var(--color-navy-dark) !important;
+}
+
+/* CTA section (Tertarik Berkolaborasi) */
+#cta {
+	background-color: var(--color-bg-light) !important;
+}
+
+/* Footer */
+#footer {
+	background-color: var(--color-navy-dark) !important;
+}
+#footer h2 {
+	color: #ffffff !important;
+}
+#footer p, #footer dl.alt dt, #footer dl.alt dd {
+	color: #cfd8e3 !important;
+}
+#footer a {
+	color: var(--color-accent) !important;
+}
+#footer a:hover {
+	color: #ffffff !important;
+}
+#footer .icons a {
+	color: #ffffff !important;
+	border-color: rgba(255,255,255,0.2) !important;
+}
+#footer .icons a:hover {
+	color: var(--color-accent) !important;
+	border-color: var(--color-accent) !important;
+}
+#footer .copyright, #footer .copyright a {
+	color: #7d8ea3 !important;
+}
