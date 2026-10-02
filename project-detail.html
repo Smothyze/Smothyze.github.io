@@ -1,23 +1,23 @@
-<!DOCTYPE HTML>
-<html lang="id">
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<title>Detail Projek | Ahmad Nafi</title>
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<link rel="stylesheet" href="assets/css/custom.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
-</head>
-<body class="is-preload project-detail-page">
+	<!DOCTYPE HTML>
+	<html lang="id">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<title>Detail Projek | Ahmad Nafi</title>
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/custom.css" />
+		<noscript>
+			<link rel="stylesheet" href="assets/css/noscript.css" />
+		</noscript>
+	</head>
+	<body class="is-preload project-detail-page">
 	<div id="wrapper">
 		<header id="header" class="alt">
 			<span class="logo"><img src="images/logo.svg" alt="Logo Ahmad Nafi" /></span>
 			<h1>Detail Projek</h1>
 			<p>Portfolio singkat dari proyek yang pernah saya kerjakan.</p>
 		</header>
-
+ 
 		<main id="main" class="project-detail-shell">
 			<section class="project-detail-card">
 				<div class="project-detail-header">
@@ -33,7 +33,7 @@
 						<a href="index.html" class="button">Kembali ke Beranda</a>
 					</div>
 				</div>
-
+ 
 				<div id="project-gallery" class="project-slider" aria-label="Galeri proyek otomatis">
 					<button class="project-arrow project-arrow-prev" type="button" aria-label="Slide sebelumnya">&#10094;</button>
 					<button class="project-arrow project-arrow-next" type="button" aria-label="Slide berikutnya">&#10095;</button>
@@ -57,15 +57,17 @@
 						<img src="images/Slide 5.png" alt="Proyek 5" />
 						<div class="project-caption">Slide 5 — Tampilan halaman simulasi kredit.</div>
 					</div>
-					<div class="project-dots" aria-label="Navigasi slide">
-						<button class="active" type="button" aria-label="Slide 1"></button>
-						<button type="button" aria-label="Slide 2"></button>
-						<button type="button" aria-label="Slide 3"></button>
-						<button type="button" aria-label="Slide 4"></button>
-						<button type="button" aria-label="Slide 5"></button>
-					</div>
 				</div>
-
+ 
+				<!-- Titik navigasi dipindah ke luar slider agar selalu berada di bawah gambar dan tidak melebihi batas -->
+				<div class="project-dots" aria-label="Navigasi slide">
+					<button class="active" type="button" aria-label="Slide 1"></button>
+					<button type="button" aria-label="Slide 2"></button>
+					<button type="button" aria-label="Slide 3"></button>
+					<button type="button" aria-label="Slide 4"></button>
+					<button type="button" aria-label="Slide 5"></button>
+				</div>
+ 
 				<div class="project-description">
 					<h2>Website Sales Honda – WordPress</h2>
                     <h3>Backend Developer | Team Project (3 Members)</h3>
@@ -80,78 +82,131 @@
 			</section>
 		</main>
 	</div>
+ 
+	<!-- Lightbox: ditaruh di luar #wrapper agar position: fixed tidak terpengaruh transform -->
+	<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Pratinjau gambar" aria-hidden="true">
+		<button class="lightbox-close" type="button" aria-label="Tutup">&times;</button>
+		<img class="lightbox-img" src="" alt="" />
+		<p class="lightbox-caption"></p>
+	</div>
 
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-	<script>
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrollex.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script>
 		(function () {
 			const slider = document.getElementById('project-gallery');
 			const slides = document.querySelectorAll('.project-slide');
 			const dots = document.querySelectorAll('.project-dots button');
 			const prevButton = document.querySelector('.project-arrow-prev');
 			const nextButton = document.querySelector('.project-arrow-next');
-
+ 
+			const lightbox = document.getElementById('lightbox');
+			const lightboxImg = lightbox.querySelector('.lightbox-img');
+			const lightboxCaption = lightbox.querySelector('.lightbox-caption');
+			const lightboxClose = lightbox.querySelector('.lightbox-close');
+ 
 			if (slides.length && slider) {
 				let currentIndex = 0;
 				let autoPlayId = null;
-
+				let lightboxOpen = false;
+ 
 				function showSlide(index) {
 					currentIndex = (index + slides.length) % slides.length;
-
+ 
 					slides.forEach((slide, i) => {
 						slide.classList.toggle('active', i === currentIndex);
 					});
-
+ 
 					dots.forEach((dot, i) => {
 						dot.classList.toggle('active', i === currentIndex);
 					});
 				}
-
-				function startAutoSlide() {
-					autoPlayId = setInterval(() => {
-						showSlide(currentIndex + 1);
-					}, 3500);
-				}
-
+ 
 				function stopAutoSlide() {
 					if (autoPlayId) {
 						clearInterval(autoPlayId);
 						autoPlayId = null;
 					}
 				}
-
+ 
+				function startAutoSlide() {
+					// Hapus interval lama dulu agar tidak berlipat ganda
+					stopAutoSlide();
+					if (lightboxOpen) return;
+					autoPlayId = setInterval(() => {
+						showSlide(currentIndex + 1);
+					}, 3500);
+				}
+ 
 				dots.forEach((dot, index) => {
 					dot.addEventListener('click', () => {
 						showSlide(index);
 					});
 				});
-
+ 
 				if (prevButton) {
 					prevButton.addEventListener('click', () => {
 						showSlide(currentIndex - 1);
 					});
 				}
-
+ 
 				if (nextButton) {
 					nextButton.addEventListener('click', () => {
 						showSlide(currentIndex + 1);
 					});
 				}
-
-				slider.addEventListener('mouseenter', () => {
+ 
+				slider.addEventListener('mouseenter', stopAutoSlide);
+				slider.addEventListener('mouseleave', startAutoSlide);
+ 
+				/* ===== Lightbox ===== */
+				function openLightbox(img) {
+					const caption = img.parentElement.querySelector('.project-caption');
+					lightboxImg.src = img.currentSrc || img.src;
+					lightboxImg.alt = img.alt || '';
+					lightboxCaption.textContent = caption ? caption.textContent : '';
+					lightbox.classList.add('is-open');
+					lightbox.setAttribute('aria-hidden', 'false');
+					document.body.style.overflow = 'hidden';
+					lightboxOpen = true;
 					stopAutoSlide();
+					lightboxClose.focus();
+				}
+ 
+				function closeLightbox() {
+					lightbox.classList.remove('is-open');
+					lightbox.setAttribute('aria-hidden', 'true');
+					document.body.style.overflow = '';
+					lightboxImg.removeAttribute('src');
+					lightboxOpen = false;
+					// Lanjutkan autoplay hanya jika kursor tidak sedang di atas slider
+					if (!slider.matches(':hover')) startAutoSlide();
+				}
+ 
+				slider.addEventListener('click', (e) => {
+					const img = e.target.closest('.project-slide img');
+					if (img) openLightbox(img);
 				});
-				slider.addEventListener('mouseleave', () => {
-					startAutoSlide();
+ 
+				lightbox.addEventListener('click', (e) => {
+					// Klik di mana saja (gambar, latar, atau tombol tutup) menutup lightbox
+					if (e.target === lightbox || e.target === lightboxImg || e.target === lightboxClose) {
+						closeLightbox();
+					}
 				});
+ 
+				document.addEventListener('keydown', (e) => {
+					if (e.key === 'Escape' && lightboxOpen) closeLightbox();
+				});
+ 
 				startAutoSlide();
 			}
 		})();
 	</script>
-</body>
-</html>
+	</body>
+	</html>
