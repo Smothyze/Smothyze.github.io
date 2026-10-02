@@ -428,38 +428,35 @@ a.button.primary:hover,
 	min-width: 0 !important;
 	min-height: 0 !important;
 	padding: 0 !important;
-	border: none !important;
-	border-radius: 0 !important;
-	background: transparent !important;
-	box-shadow: none !important;
+	border: 1px solid rgba(255, 255, 255, 0.12) !important;
+	border-radius: 50% !important;
+	background: rgba(15, 23, 42, 0.25) !important;
+	backdrop-filter: blur(2px);
+	box-shadow: 0 6px 18px rgba(15, 23, 42, 0.22) !important;
 	appearance: none !important;
-	color: rgba(255, 255, 255, 0.9);
-	font-size: 1.8rem;
+	color: rgba(255, 255, 255, 0.82);
+	font-size: 1.5rem;
 	font-weight: 700;
 	line-height: 1;
 	cursor: pointer;
-	transition: opacity 0.2s ease, transform 0.2s ease;
+	transition: opacity 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 	opacity: 0;
-	pointer-events: none;
-}
-
-#project-gallery.is-hovered .project-arrow,
-#project-gallery .project-arrow:hover {
-	opacity: 1;
 	pointer-events: auto;
 }
 
-#project-gallery .project-arrow:hover {
-	background: transparent !important;
-	transform: translateY(-50%) scale(1.08);
+#project-gallery .project-arrow:hover,
+#project-gallery .project-arrow:focus-visible {
+	opacity: 1;
+	background: rgba(15, 23, 42, 0.45) !important;
+	box-shadow: 0 8px 20px rgba(15, 23, 42, 0.3) !important;
 }
 
 #project-gallery .project-arrow-prev {
-	left: 12px;
+	left: 18px;
 }
 
 #project-gallery .project-arrow-next {
-	right: 12px;
+	right: 18px;
 }
 
 .project-caption {
